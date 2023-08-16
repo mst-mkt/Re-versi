@@ -26,5 +26,5 @@ model Player {
   createdAt DateTime
   color     Int
 
-  @@id([id, roomId])
+  @@id([id, roomId], name: "PlayerId")
 }
