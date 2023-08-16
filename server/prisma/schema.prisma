@@ -19,10 +19,10 @@ model Room {
 
 model Player {
   id        String
-  room      Room     @relation(fields: [roomId], references: [id])
+  room      Room      @relation(fields: [roomId], references: [id])
   roomId    String
-  inTime    Int
-  outTime   Int?
+  inTime    DateTime
+  outTime   DateTime?
   createdAt DateTime
 
   @@id([id, roomId])
