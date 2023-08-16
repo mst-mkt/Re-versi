@@ -45,6 +45,7 @@ export const roomsRepo = {
   findAll: async (): Promise<RoomModel[]> => {
     const rooms = await prismaClient.room.findMany({
       where: { status: 'waiting' },
+      orderBy: { createdAt: 'desc' },
     });
     return rooms.map(toRoomModel);
   },
