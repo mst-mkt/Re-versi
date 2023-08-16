@@ -7,9 +7,23 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Task {
+model Room {
   id        String   @id
-  label     String
-  done      Boolean
+  name      String
+  board     Json
+  turnColor String
+  status    String
+  players   Player[]
   createdAt DateTime
+}
+
+model Player {
+  id        String
+  room      Room     @relation(fields: [roomId], references: [id])
+  roomId    String
+  inTime    Int
+  outTime   Int?
+  createdAt DateTime
+
+  @@id([id, roomId])
 }
