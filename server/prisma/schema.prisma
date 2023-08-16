@@ -24,6 +24,7 @@ model Player {
   inTime    DateTime
   outTime   DateTime?
   createdAt DateTime
+  color     Int
 
   @@id([id, roomId])
 }
