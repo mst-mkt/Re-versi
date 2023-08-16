@@ -11,7 +11,7 @@ model Room {
   id        String   @id
   name      String
   board     Json
-  turnColor String
+  turnColor Int
   status    String
   players   Player[]
   createdAt DateTime
