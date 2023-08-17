@@ -1,22 +1,22 @@
+import type { RoomId } from 'commonTypesWithClient/branded';
 import { useAtom } from 'jotai';
+import { useRouter } from 'next/router';
 import { Loading } from 'src/components/Loading/Loading';
-import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
+import Game from 'src/components/reversi/Game/Game';
+import Lobby from 'src/components/reversi/Lobby/Lobby';
 import { userAtom } from '../atoms/user';
-import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
+  const router = useRouter();
+
+  const query = router.query.roomId;
+  const roomId = (Array.isArray(query) ? query[0] : query ?? null) as RoomId | null;
 
   if (!user) return <Loading visible />;
+  if (roomId === null) return <Lobby />;
 
-  return (
-    <>
-      <BasicHeader user={user} />
-      <div className={styles.title} style={{ marginTop: '160px' }}>
-        Welcome to frourio!
-      </div>
-    </>
-  );
+  return <Game roomId={roomId} />;
 };
 
 export default Home;
